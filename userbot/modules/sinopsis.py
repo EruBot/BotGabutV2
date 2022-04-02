@@ -22,14 +22,17 @@ async def _(event):
         neourl = requests.get(xurl + url)
         neopage = bs(neourl.content, 'html.parser')
         altimg = neopage.find(itemprop="image")
-        ttl = altimg["alt"]
-        msg = f"<b>➲ Sinopsis <a href='{xurl}{url}'>{ttl}</a></b>\n"
-        bts = 7*"═"
-        msg += f"{bts}\n"
-        neos = neopage.find("div", class_="contenidotv")
-        neop = neos.find(itemprop="description")
-        for sino in neop.find_all('p'):
-            msg += f"<b>{sino}</b>\n"
+        if not altimg:
+            await event.edit("Not found...")
+        else:
+            ttl = altimg["alt"]
+            msg = f"<b>➲ Sinopsis <a href='{xurl}{url}'>{ttl}</a></b>\n"
+            bts = 7*"═"
+            msg += f"{bts}\n"
+            neos = neopage.find("div", class_="contenidotv")
+            neop = neos.find(itemprop="description")
+            for sino in neop.find_all('p'):
+                msg += f"<b>{sino}</b>\n"
 
         await event.edit(msg, link_preview=False, parse_mode="html")
 
