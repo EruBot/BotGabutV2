@@ -12,15 +12,17 @@ from userbot.events import register
 
 @register(outgoing=True, pattern=r"^\.sinop ?(.*)")
 async def _(event):
+    xurl = "https://neonime.watch/episode/"
     url = event.pattern_match.group(1)
+    url = url.replace(" ", "-")
     if not url:
-        await event.edit("Enter your anime url, see .help sinopsis")
+        await event.edit("Enter your neonime url, see .help sinopsis")
     elif "https://neonime" not in url:
         await event.edit("Enter neonime url")
         return
     else:
         await event.edit("`please wait..`")
-        neourl = requests.get(url)
+        neourl = requests.get(xurl + url)
         neopage = bs(neourl.content, 'html.parser')
         altimg = neopage.find(itemprop="image")
         ttl = altimg["alt"]
@@ -38,7 +40,7 @@ async def _(event):
 CMD_HELP.update(
     {
         "sinopsis": "**Sinopsis**"
-        "\n ➲`.sinop` url"
-        "\n ➣ ex: `.sinop https://neonime.watch/episode/fantasy-bishoujo-juniku-ojisan-to-1x12-subtitle-indonesia/`"
+        "\n ➲`.sinop` title"
+        "\n ➣ ex: `.sinop aharen`"
     }
 )
