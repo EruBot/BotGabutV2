@@ -24,6 +24,7 @@ async def _(event):
         altimg = neopage.find(itemprop="image")
         if not altimg:
             await event.edit("Not found...")
+            return
         else:
             ttl = altimg["alt"]
             msg = f"<b>➲ Sinopsis <a href='{xurl}{url}'>{ttl}</a></b>\n"
