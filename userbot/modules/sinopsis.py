@@ -23,7 +23,7 @@ async def _(event):
         neopage = bs(neourl.content, 'html.parser')
         altimg = neopage.find(itemprop="image")
         ttl = altimg["alt"]
-        msg = f"<b>➲ Sinopsis <a href='{url}'>{ttl}</a></b>\n"
+        msg = f"<b>➲ Sinopsis <a href='{xurl}{url}'>{ttl}</a></b>\n"
         bts = 7*"═"
         msg += f"{bts}\n"
         neos = neopage.find("div", class_="contenidotv")
