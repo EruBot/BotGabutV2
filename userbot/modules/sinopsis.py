@@ -17,9 +17,6 @@ async def _(event):
     url = url.replace(" ", "-")
     if not url:
         await event.edit("Enter anime title, see .help sinopsis")
-    """elif "https://neonime" not in url:
-        await event.edit("Enter neonime url")
-        return"""
     else:
         await event.edit("`please wait..`")
         neourl = requests.get(xurl + url)
