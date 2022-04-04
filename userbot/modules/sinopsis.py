@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup as bs
 import re
 from userbot import CMD_HELP
 from userbot.events import register
-from userbot.utils import rep_sino
+from userbot.utils.tools import rep_sino
 
 
 @register(outgoing=True, pattern=r"^\.sinop ?(.*)")
