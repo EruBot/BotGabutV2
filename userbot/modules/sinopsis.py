@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup as bs
 import re
 from userbot import CMD_HELP
 from userbot.events import register
+from userbot.utils import rep_sino
 
 
 @register(outgoing=True, pattern=r"^\.sinop ?(.*)")
@@ -33,16 +34,7 @@ async def _(event):
             neos = neopage.find("div", class_="contenidotv")
             neop = neos.find(itemprop="description")
             for sino in neop.find_all('p'):
-                sino = f"{sino}"
-                sino = sino.replace("<p>", "")
-                sino = sino.replace("</p>", "")
-                sino = sino.replace("Streaming dan Download ", "")
-                sino = sino.replace(" Subtitle Indonesia ", "")
-                sino = sino.replace("Nonton online 1080p 720P 480P 360P", "")
-                sino = sino.replace(" Bagaimanakah kisah selanjutnya? Tonton terus hanya di neonime", "")
-                sino = sino.replace("Nonton ", "")
-                sino = sino.replace("hanya di neonime", "")
-                sino = re.sub(" Episode [0-9]", ".", sino)
+                rep_sino()
                 msg += f"<b>{sino}</b>\n"
 
         await event.edit(msg, link_preview=False, parse_mode="html")
