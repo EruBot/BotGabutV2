@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup as bs
 import re
 from userbot import CMD_HELP
 from userbot.events import register
-from userbot.utils.tools import rep_sino
+from userbot.utils import tools
 
 
 @register(outgoing=True, pattern=r"^\.sinop ?(.*)")
@@ -34,7 +34,7 @@ async def _(event):
             neos = neopage.find("div", class_="contenidotv")
             neop = neos.find(itemprop="description")
             for sino in neop.find_all('p'):
-                rep_sino()
+                tools.rep_sino()
                 msg += f"<b>{sino}</b>\n"
 
         await event.edit(msg, link_preview=False, parse_mode="html")
