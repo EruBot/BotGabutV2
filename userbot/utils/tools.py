@@ -110,16 +110,3 @@ def async_wrap(func):
         return await loop.run_in_executor(executor, pfunc)
 
     return run
-
-
-def rep_sino():
-    sino = f"{sino}"
-    sino = sino.replace("<p>", "")
-    sino = sino.replace("</p>", "")
-    sino = sino.replace("Streaming dan Download ", "")
-    sino = sino.replace(" Subtitle Indonesia ", "")
-    sino = sino.replace("Nonton online 1080p 720P 480P 360P", "")
-    sino = sino.replace(" Bagaimanakah kisah selanjutnya? Tonton terus hanya di neonime", "")
-    sino = sino.replace("Nonton ", "")
-    sino = sino.replace("hanya di neonime", "")
-    sino = re.sub(" Episode [0-9]", ".", sino)
