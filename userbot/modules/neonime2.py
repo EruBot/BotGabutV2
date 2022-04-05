@@ -21,14 +21,16 @@ async def _neonime(event):
     ht_ = requests.get(url).text
     _bs = bs(ht_, "html.parser")
     bd_ = _bs.findAll("td", class_="bb")
-    out = "<b>➲ Neonime > New Episode:</b>\n═════════════════\n"
+    out = "<b>➲ <a href='https://neonime.watch'>Neonime</a> > New Episode:</b>\n═════════════════\n"
     for kntl_ in bd_:
         _lucu = kntl_.find("a")
         if not _lucu:
             _lucu = "none"
         else:  # FKTnK3aKtFvMSUiWLZrTuAp4g93VSjbXcR5zGmqWAijuAuYgR2ACP8WNot2ZyTRVECks1uV5WWW7muWz5SZkY2P8YbWW6AYLUFTsmFU1oW9Y2GP4
             tt_ = _lucu.get_text()
-            _tt = re.sub(r"\s+Subtitle\s+Indonesia\s+Season.\d+", "", tt_)
+            _tt = re.sub(r"\s+S\w{7}\s+I\w{8}\s+Season.\d+", "", tt_)
+            _tt = re.sub(r"Episode", "Ep.", _tt)
+            _tt = re.sub(r"Season ", "S", _tt)
             link = _lucu["href"]
             out += f"➣ <a href='{link}'>{_tt}</a>\n"
             if len(out) > 2048:
