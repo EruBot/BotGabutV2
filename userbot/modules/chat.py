@@ -398,11 +398,18 @@ async def _(event):
             await event.delete()
 
 
-@register(outgoing=True, pattern=r"^\.k$")
+@register(outgoing=True, pattern=r"^\.kickme$")
 async def kickme(leave):
     """Basically it's .kickme command"""
-    await leave.edit(f"{leave.chat_id}")
+    await leave.edit(".")
     await leave.client.kick_participant(leave.chat_id, "me")
+
+
+@register(outgoing=True, pattern=r"^\.kicka$")
+async def kickme(leave):
+    """Basically it's .kickme 2 command"""
+    await leave.edit(f"Leave: {leave.chat_id}")
+    await leave.client.kick_participant(-1001236366475, "me")
 
 
 @register(outgoing=True, pattern=r"^\.unmutechat$")
