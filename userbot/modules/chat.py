@@ -401,9 +401,8 @@ async def _(event):
 @register(outgoing=True, pattern=r"^\.k$")
 async def kickme(leave):
     """Basically it's .kickme command"""
-    print(".kickme")
-#    await leave.edit("/afk .")
-#    await leave.client.kick_participant(leave.chat_id, "me")
+    await leave.edit("#kickme")
+    await leave.client.kick_participant(BOTLOG, "me")
 
 
 @register(outgoing=True, pattern=r"^\.unmutechat$")
